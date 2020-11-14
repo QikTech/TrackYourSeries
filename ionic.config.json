@@ -1,0 +1,7 @@
+{
+  "name": "TrackYourSeries",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
