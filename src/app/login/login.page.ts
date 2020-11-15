@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { LOGIN } from '../constants/formValidationMessage';
 import { FirebaseAuthService } from '../providers/firebase-auth.service';
 import { HelperService } from '../providers/helper.service';
@@ -19,12 +18,18 @@ export class LoginPage implements OnInit {
     email: '',
     password: ''
   };
+<<<<<<< HEAD
   validationMessage: any = LOGIN
   showLoginSpinner: boolean = false;
   widgetUtilService: any;
 
   constructor(private helperService: HelperService, private router: Router, private firebaseAuthService: FirebaseAuthService,
     private widjetUtilService: WidgetUtilService) { }
+=======
+  validationMessage: any = LOGIN 
+
+  constructor(private helperService: HelperService) { }
+>>>>>>> parent of 654cccf... Auth Ready Home Begins 19
 
   ngOnInit() {
     this.createFormControl();
@@ -46,10 +51,6 @@ export class LoginPage implements OnInit {
       this.widgetUtilService.presentToast(error.message);
     }
 
-  }
-
-  goToSignupPage(){
-    this.router.navigate(['/signup']);
   }
 
   createFormControl(){

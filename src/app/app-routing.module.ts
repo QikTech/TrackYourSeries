@@ -10,6 +10,7 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+<<<<<<< HEAD
   },
   {
     path: 'signup',
@@ -18,6 +19,8 @@ const routes: Routes = [
   {
     path: 'manager',
     loadChildren: () => import('./manager/manager.module').then( m => m.ManagerPageModule)
+=======
+>>>>>>> parent of 654cccf... Auth Ready Home Begins 19
   }
 ];
 
