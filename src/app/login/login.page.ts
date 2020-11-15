@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LOGIN } from '../constants/formValidationMessage';
 import { HelperService } from '../providers/helper.service';
 
@@ -16,13 +17,17 @@ export class LoginPage implements OnInit {
     email: '',
     password: ''
   };
-  validationMessage: any = LOGIN 
+  validationMessage: any = LOGIN
 
-  constructor(private helperService: HelperService) { }
+  constructor(private helperService: HelperService, private router: Router) { }
 
   ngOnInit() {
     this.createFormControl();
     this.createForm(); 
+  }
+
+  goToSignupPage(){
+    this.router.navigate(['/signup']);
   }
 
   createFormControl(){
