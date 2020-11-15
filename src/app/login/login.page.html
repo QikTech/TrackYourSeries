@@ -31,7 +31,11 @@
               <div class="error-message">
                 {{formError.password}}
               </div>
-              <ion-button [disabled]=loginForm.invalid expand="block" class="ion-margin-top">Login</ion-button>
+              <ion-button [disabled]=loginForm.invalid expand="block" class="ion-margin-top"
+              (click)="loginWithEmailPassword()">
+                Login
+                <ion-spinner name="crescent" *ngIf="showLoginSpinner"></ion-spinner>
+              </ion-button>
               <ion-button color="light" expand="block" class="ion-margin-top" (click)="goToSignupPage()">Signup</ion-button>
             </form>
           </ion-card-content>

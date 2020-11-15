@@ -37,7 +37,7 @@ export class SignupPage implements OnInit {
       this.showSignupSpinner = false;
       this.widgetUtilService.presentToast('Signup Successful! Verification Email Will Arrive');
       this.signupForm.reset();
-      this.router.navigate(['/home']);
+      this.router.navigate(['/manager']);
     } catch (error) {
       console.log('Error', error);
       this.showSignupSpinner = false;

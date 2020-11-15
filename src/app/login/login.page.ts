@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LOGIN } from '../constants/formValidationMessage';
+import { FirebaseAuthService } from '../providers/firebase-auth.service';
 import { HelperService } from '../providers/helper.service';
+import { WidgetUtilService } from '../providers/widget-util.service';
 
 @Component({
   selector: 'app-login',
@@ -18,12 +20,32 @@ export class LoginPage implements OnInit {
     password: ''
   };
   validationMessage: any = LOGIN
+  showLoginSpinner: boolean = false;
+  widgetUtilService: any;
 
-  constructor(private helperService: HelperService, private router: Router) { }
+  constructor(private helperService: HelperService, private router: Router, private firebaseAuthService: FirebaseAuthService,
+    private widjetUtilService: WidgetUtilService) { }
 
   ngOnInit() {
     this.createFormControl();
     this.createForm(); 
+  }
+   
+  async loginWithEmailPassword() {
+    try {
+      this.showLoginSpinner = true;
+      const result = await this.firebaseAuthService.loginWithEmailPassword(this.email.value, this.password.value);  
+      // console.log('result==', result);
+      this.showLoginSpinner = false;
+      this.widgetUtilService.presentToast('Login Successful');
+      this.loginForm.reset();
+      this.router.navigate(['/manager']);
+    } catch (error) {
+      console.log('Error', error);
+      this.showLoginSpinner = false;
+      this.widgetUtilService.presentToast(error.message);
+    }
+
   }
 
   goToSignupPage(){
