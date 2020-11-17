@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SIGNUP } from '../constants/formValidationMessage';
-import { WidgetUtilService } from '../provider/widget-util.service';
 import { FirebaseAuthService } from '../providers/firebase-auth.service';
 import { HelperService } from '../providers/helper.service';
+import { WidgetUtilService } from '../providers/widget-util.service';
 
 @Component({
   selector: 'app-signup',
@@ -22,55 +22,46 @@ export class SignupPage implements OnInit {
   validationMessage: any = SIGNUP;
   showSignupSpinner: boolean = false;
 
-  constructor(private helperService: HelperService, private router: Router,
-    private firebaseAuthService: FirebaseAuthService, private widgetUtilService: WidgetUtilService) { }
+  constructor(private helperService: HelperService, private router: Router, private firebaseAuthService: FirebaseAuthService, private widgetUtilService: WidgetUtilService) {}
 
   ngOnInit() {
     this.createFormControl();
-    this.createForm();   
+    this.createForm(); 
   }
 
-  resetForm() {
-    this.signupForm.reset();
-    this.formError = {
-      email: '',
-      password: ''
-    };
-  }
-
-  async signup() {
+  async signup(){
     try {
       this.showSignupSpinner = true;
-      const result = await this.firebaseAuthService.registerWithEmailPassword(this.email.value, this.password.value);
-      console.log('result',result);
+      const result = await this.firebaseAuthService.registerWithEmailPassword(this.email.value, this.password.value);  
+      console.log('result', result);
       this.showSignupSpinner = false;
-      this.widgetUtilService.presentToast('Signup Successful, Verification Email sent');
-      this.resetForm.reset();
-      this.router.navigate(['/home']);
+      this.widgetUtilService.presentToast('Signup Successful! Verification Email Will Arrive');
+      this.signupForm.reset();
+      this.router.navigate(['/manager']);
     } catch (error) {
       console.log('Error', error);
       this.showSignupSpinner = false;
       this.widgetUtilService.presentToast(error.message);
     }
+    
   }
 
   goToLoginPage(){
     this.router.navigate(['/login']);
   }
 
-  createFormControl() {
-    this.email = new FormControl('', [
+  createFormControl(){
+    this.email = new FormControl('',[
       Validators.required,
       Validators.email
     ]);
-
     this.password = new FormControl('',[
       Validators.required,
       Validators.minLength(6)
     ]);
   }
 
-  createForm() {
+  createForm(){
     this.signupForm = new FormGroup({
       email: this.email,
       password: this.password
@@ -79,8 +70,8 @@ export class SignupPage implements OnInit {
   }
 
   onFormValueChanged(data) {
-      this.formError = this.helperService.prepareValidationMessage(this.signupForm, this.validationMessage, this.formError);
-      // console.log('===formError', this.formError);
-    }
+    this.formError = this.helperService.prepareValidationMessage(this.signupForm, this.validationMessage, this.formError);
+    // console.log('===formError', this.formError)
+  }
 
 }

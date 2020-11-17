@@ -1,27 +1,54 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { FirebaseAuthService } from './providers/firebase-auth.service';
-import { Router } from '@angular/router';
-import { WidgetUtilService } from './provider/widget-util.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent {
-  isLoggedIn: boolean = false;
+export class AppComponent implements OnInit {
+  public selectedIndex = 0;
+  public appPages = [
+    {
+      title: 'Inbox',
+      url: '/folder/Inbox',
+      icon: 'mail'
+    },
+    {
+      title: 'Outbox',
+      url: '/folder/Outbox',
+      icon: 'paper-plane'
+    },
+    {
+      title: 'Favorites',
+      url: '/folder/Favorites',
+      icon: 'heart'
+    },
+    {
+      title: 'Archived',
+      url: '/folder/Archived',
+      icon: 'archive'
+    },
+    {
+      title: 'Trash',
+      url: '/folder/Trash',
+      icon: 'trash'
+    },
+    {
+      title: 'Spam',
+      url: '/folder/Spam',
+      icon: 'warning'
+    }
+  ];
+  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
-    private firebaseAuthService: FirebaseAuthService,
-    private router: Router,
-    private widgetUtilService: WidgetUtilService
+    private statusBar: StatusBar
   ) {
     this.initializeApp();
   }
@@ -31,32 +58,12 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-    this.getAuthState();
   }
 
-
-  getAuthState() {
-    this.widgetUtilService.presentLoading();
-    this.firebaseAuthService.getAuthState().subscribe(user => {
-      console.log('user auth state===', user ? user.toJSON(): null);
-      if (user) {
-        this.isLoggedIn = true;
-      } else{
-        this.isLoggedIn = false;
-      }
-      this.handleNavigation();
-      this.widgetUtilService.dismissLoader();
-    });
-  }
-  handleNavigation(){
-    if (this.isLoggedIn){
-      console.log('route==', this.router.url.split('/')[1]);
-      const currentUrl = this.router.url.split('/')[1];
-      if (currentUrl === 'login' || currentUrl === 'signup'){
-        this.router.navigate(['/home']);
-      } else{
-        this.router.navigate(['/login']);
-      }
+  ngOnInit() {
+    const path = window.location.pathname.split('folder/')[1];
+    if (path !== undefined) {
+      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
   }
 }

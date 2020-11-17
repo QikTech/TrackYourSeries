@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "TrackMySeries",
+  "appName": "TrackYourSeries",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
