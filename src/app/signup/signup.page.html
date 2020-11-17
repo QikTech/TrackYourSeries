@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Signup</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,11 +15,11 @@
           <ion-card-header>
             <ion-card-title class="ion-text-center">
               <ion-icon name="key-sharp" color="secondary"></ion-icon>
-              Login
+              Signup
             </ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <form [formGroup]="loginForm" autocomplete="off">
+            <form [formGroup]="signupForm" autocomplete="off">
             <ion-item>
                 <ion-label position="floating">Email</ion-label>
                 <ion-input type="text" formControlName="email"></ion-input>
@@ -31,22 +34,13 @@
               <div class="error-message">
                 {{formError.password}}
               </div>
-              <ion-row>
-                <ion-col>
-                  <ion-button color="secondary" expand="block" class="ion-margin-top" [disabled]="loginForm.invalid"
-                  (click)="loginWithEmailAndPassword()">
-                    Login
-                    <ion-spinner name="crescent" *ngIf="showLoginSpinner"></ion-spinner>
-                  </ion-button>
-                </ion-col>
-                <ion-col>
-                  <ion-button color="danger" expand="block" class="ion-margin-top">
-                    Google <ion-icon name="logo-google"></ion-icon>
-                  </ion-button>
-                </ion-col>
-              </ion-row>
-              <ion-button color="light" expand="block" class="ion-margin-top" (click)="goToSignupPage()">
+              <ion-button color="secondary" expand="block" class="ion-margin-top" [disabled]="signupForm.invalid"
+              (click)="signup()">
                 Signup
+                <ion-spinner name="crescent" *ngIf="showSignupSpinner"></ion-spinner>
+              </ion-button>
+              <ion-button color="light" expand="block" class="ion-margin-top" (click)="goToLoginPage()">
+                Go to Login
               </ion-button>
             </form>
           </ion-card-content>

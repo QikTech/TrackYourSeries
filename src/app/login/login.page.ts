@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LOGIN } from '../constants/formValidationMessage';
+import { WidgetUtilService } from '../provider/widget-util.service';
 import { FirebaseAuthService } from '../providers/firebase-auth.service';
 import { HelperService } from '../providers/helper.service';
-import { WidgetUtilService } from '../providers/widget-util.service';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ import { WidgetUtilService } from '../providers/widget-util.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+
   loginForm: FormGroup;
   email: FormControl;
   password: FormControl;
@@ -18,53 +20,58 @@ export class LoginPage implements OnInit {
     email: '',
     password: ''
   };
-<<<<<<< HEAD
-  validationMessage: any = LOGIN
+  validationMessage: any = LOGIN;
   showLoginSpinner: boolean = false;
-  widgetUtilService: any;
 
-  constructor(private helperService: HelperService, private router: Router, private firebaseAuthService: FirebaseAuthService,
-    private widjetUtilService: WidgetUtilService) { }
-=======
-  validationMessage: any = LOGIN 
-
-  constructor(private helperService: HelperService) { }
->>>>>>> parent of 654cccf... Auth Ready Home Begins 19
+  constructor (private helperService: HelperService, private router: Router,
+    private firebaseAuthService: FirebaseAuthService, private widgetUtilService: WidgetUtilService) { }
 
   ngOnInit() {
     this.createFormControl();
-    this.createForm(); 
+    this.createForm();    
   }
-   
-  async loginWithEmailPassword() {
+
+  reserForm() {
+    this.loginForm.reset();
+    this.formError = {
+      email: '',
+      password: ''
+    };
+  }
+
+  async loginWithEmailAndPassword(){
     try {
       this.showLoginSpinner = true;
-      const result = await this.firebaseAuthService.loginWithEmailPassword(this.email.value, this.password.value);  
-      // console.log('result==', result);
+      const result = await this.firebaseAuthService.loginWithEmailPassword(this.email.value, this.password.value);
+      console.log('result',result);
       this.showLoginSpinner = false;
       this.widgetUtilService.presentToast('Login Successful');
-      this.loginForm.reset();
-      this.router.navigate(['/manager']);
+      this.reserForm();
+      this.router.navigate(['/home']);
     } catch (error) {
       console.log('Error', error);
       this.showLoginSpinner = false;
       this.widgetUtilService.presentToast(error.message);
     }
-
   }
 
-  createFormControl(){
-    this.email = new FormControl('',[
+  goToSignupPage() {
+    this.router.navigate(['/signup']);
+  }
+
+  createFormControl() {
+    this.email = new FormControl('', [
       Validators.required,
       Validators.email
     ]);
+
     this.password = new FormControl('',[
       Validators.required,
-      Validators.minLength(5)
+      Validators.minLength(6)
     ]);
   }
 
-  createForm(){
+  createForm() {
     this.loginForm = new FormGroup({
       email: this.email,
       password: this.password
@@ -73,7 +80,7 @@ export class LoginPage implements OnInit {
   }
 
   onFormValueChanged(data) {
-    this.formError = this.helperService.prepareValidationMessage(this.loginForm, this.validationMessage, this.formError);
-    // console.log('===formError', this.formError)
+      this.formError = this.helperService.prepareValidationMessage(this.loginForm, this.validationMessage, this.formError);
+      // console.log('===formError', this.formError);
+    }
   }
-}
