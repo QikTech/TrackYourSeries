@@ -1,10 +1,21 @@
 export const LOGIN = {
      email: {
-          required: 'Email Required',
-          email: 'Invalid Email'
+          required: 'Email is Required',
+          email: 'Email is invalid'
      },
      password: {
-          required: 'Password Required',
-          minlength: 'atleast 4 characters'
+          password: 'Password is Required',
+          minlength: 'Password must be 6 characters long'
+     }
+}
+
+export const SIGNUP = {
+     email: {
+          required: 'Email is Required',
+          email: 'Email is invalid'
+     },
+     password: {
+          password: 'Password is Required',
+          minlength: 'Password must be 6 characters long'
      }
 }

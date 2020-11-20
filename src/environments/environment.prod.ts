@@ -7,6 +7,6 @@ export const environment = {
     projectId: "track-my-series-3e467",
     storageBucket: "track-my-series-3e467.appspot.com",
     messagingSenderId: "480476914177",
-    appId: "1:480476914177:web:25b1647403e77f18a2d600",
+    appId: "1:480476914177:web:25b1647403e77f18a2d600"
   }
 };

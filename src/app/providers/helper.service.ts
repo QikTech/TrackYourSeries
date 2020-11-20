@@ -7,17 +7,17 @@ export class HelperService {
 
   constructor() { }
 
-  prepareValidationMessage(form, validationMessage, formfields) {
-    for (const field in formfields) {
-      formfields[field] = '';
+  prepareValidationMessage(form, validationMessage, formFields){
+    for (const field in formFields) {
+      formFields[field] = '';
       const control = form.controls[field];
       if (control && control.invalid) {
         const messageObj = validationMessage[field];
         for (const key in control.errors) {
-          formfields[field] = formfields[field] + messageObj[key] + '';
+          formFields[field] = formFields[field] + messageObj[key] + '';
         }
       }
     }
-    return formfields;
+      return formFields;
   }
 }
