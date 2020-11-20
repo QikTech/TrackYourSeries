@@ -34,7 +34,7 @@ export class FirebaseAuthService {
     }
   }
   // // GETTING IF USER IS LOGGED IN OR NOT
-  // getAuthState() {
-  //   return this.angularFireAuth.authState;
-  // }
+  getAuthState() {
+    return this.angularFireAuth.authState;
+  }
 }
