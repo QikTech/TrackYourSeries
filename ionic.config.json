@@ -1,7 +1,0 @@
-{
-  "name": "TMC",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
