@@ -15,10 +15,42 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.yellow,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      title: 'Welcome to Flutter',
+      title: 'Track My Series',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Welcome to Flutter'),
+          title: Text('Track My Series'),
+          centerTitle: true,
+          backgroundColor: Colors.white,
+        ),
+
+        body: Center(
+          child: Container(
+            height: 200.0,
+            width: 200.0,
+            child: Text(
+              'Qiktech in the house',
+              style: TextStyle(
+                fontFamily: 'poppins',
+                color: Color(0xff534E91),
+              ),
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Color(0xffDBFFD1),
+            ),
+            // padding: EdgeInsets.all(50),
+          ),
+        ),
+
+        // ignore: missing_required_param
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          // child: Text('add'),
+          child: Icon(
+            Icons.add,
+            color: Color(0xff534E91),
+          ),
+          backgroundColor: Color(0xffffffff),
         ),
       ),
     );
