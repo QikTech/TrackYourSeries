@@ -6,5 +6,6 @@ getSize(context){
   size=MediaQuery.of(context).size;
 }
 
-Color bgColor1 = Color(0xFFDBFFD1);
-Color bgColor2 = Color(0xFFFFF4D1);
+Color bgColor1 = Color(0xFFC5FFB5);
+Color bgColor2 = Color(0xFFFFEAA7);
+Color accentPurple = Color(0xFF534E91);

@@ -17,6 +17,10 @@ class _ActivityScreenState extends State<ActivityScreen> {
   Widget build(BuildContext context) {
 
     return MaterialApp(
+        // darkTheme: ThemeData(
+        //   brightness: Brightness.dark,
+        //   /* dark theme settings */
+        // ),
         debugShowCheckedModeBanner: false,
         home: LandingScreen()
     );

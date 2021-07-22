@@ -34,11 +34,11 @@ class _LandingScreenState extends State<LandingScreen> {
         backgroundColor: Colors.white,
         title: Text('Track My Series',
           style: TextStyle(
-            color: Colors.black,
+            color: accentPurple,
           ),),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 1),
+        padding: EdgeInsets.fromLTRB(0,30,0,0),
         child: ListView.separated(
           itemCount: 4,
           itemBuilder: (BuildContext context, int index) {
