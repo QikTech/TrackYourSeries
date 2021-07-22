@@ -33,9 +33,9 @@ class _LandingScreenState extends State<LandingScreen> {
         elevation: 0,
         backgroundColor: Colors.white,
         title: Text('Track My Series',
-        style: TextStyle(
-          color: Colors.black,
-        ),),
+          style: TextStyle(
+            color: Colors.black,
+          ),),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 1),
