@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:expansion_card/expansion_card.dart';
 import 'package:track_my_series/screens/landing.dart';
@@ -54,30 +55,102 @@ class _SeriesCardState extends State<SeriesCard> {
             ),
           ),
           Positioned(
-              right: 17.5,
-              child: AnimatedContainer(
-                duration: Duration(milliseconds: 350),
-                height: height,
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  radius: 20,
-                  child: Container(
-                    height: 30,
-                    width: 30,
-                    decoration: BoxDecoration(
-                      color: index.isEven ? bgColor1 : bgColor2,
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: Icon(
-                      Icons.edit,
-                      size: 20,
-                      color: Colors.black,
-                    ),
+            right: 17.5,
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 350),
+              height: height,
+              child: CircleAvatar(
+                backgroundColor: Colors.white,
+                radius: 20,
+                child: Container(
+                  height: 30,
+                  width: 30,
+                  decoration: BoxDecoration(
+                    color: index.isEven ? bgColor1 : bgColor2,
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: Icon(
+                    Icons.edit,
+                    size: 20,
+                    color: Colors.black,
                   ),
                 ),
-              ))
+              ),
+
+            ),
+          ),
+
         ],
       ),
     );
   }
 }
+// DBFFD1
+// FFF4D1
+// decoration: BoxDecoration(
+// borderRadius: BorderRadius.circular(20),
+// color: Color(0xffDBFFD1),
+// ),
+
+
+// class SeriesCard extends StatefulWidget {
+//   @override
+//   _SeriesCardState createState() => _SeriesCardState();
+// }
+//
+// class _SeriesCardState extends State<SeriesCard> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: Colors.black,
+//       body: Container(
+//         decoration: BoxDecoration(
+//           color: Color(0xff000000),
+//         ),
+//
+//         child:
+//           Padding(
+//             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+//             child: Container(
+//               decoration: BoxDecoration(
+//               borderRadius: BorderRadius.circular(20),
+//               color: Color(0xffDBFFD1),
+//             ),
+//             child: ExpansionCard(
+//                 backgroundColor: Color(0xFFDBFFD1),
+//                 borderRadius: 20,
+//                 trailing: CircleAvatar(
+//                   backgroundColor: Colors.white,
+//                   child: Icon(
+//                     Icons.edit,
+//                     color: Colors.black,
+//                   ),
+//                 ),
+//                 title: Container(
+//                   child: Column(
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     children: <Widget>[
+//                       Text(
+//                         "Header",
+//                         // style: TextStyle(color: Colors.black),
+//                       ),
+//                       Text("Sub"),
+//                     ],
+//                   ),
+//                 ),
+//                 children: <Widget>[
+//                   Card(
+//                     margin: EdgeInsets.symmetric(horizontal: 7),
+//                     child: Text(
+//                       "Content goes over here !",
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ),
+//         // ],
+//       ),
+//     );
+//   }
+// }

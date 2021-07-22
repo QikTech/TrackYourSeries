@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="qiktech.dev.track_my_series">
    <application
-        android:label="track_my_series"
+        android:label="Track My Series"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
